@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aether - Social Space</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Auth Screen Layout (Overlay if logged out) -->
+  <div id="auth-screen" class="auth-screen active">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="logo-icon-large">
+          <i data-lucide="wind" class="icon-brand-glow"></i>
+        </div>
+        <h1>Aether</h1>
+        <p>Step into the social atmosphere</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="tab-login-btn" class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+        <button id="tab-register-btn" class="auth-tab" onclick="switchAuthTab('register')">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-username"><i data-lucide="user"></i> Username</label>
+          <input type="text" id="login-username" placeholder="e.g. wanderer" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password"><i data-lucide="lock"></i> Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <span>Sign In</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="reg-username"><i data-lucide="at-sign"></i> Username</label>
+          <input type="text" id="reg-username" placeholder="e.g. wanderer (min 3 chars)" required minlength="3">
+        </div>
+        <div class="form-group">
+          <label for="reg-displayname"><i data-lucide="user"></i> Display Name</label>
+          <input type="text" id="reg-displayname" placeholder="e.g. John Doe">
+        </div>
+        <div class="form-group">
+          <label for="reg-password"><i data-lucide="lock"></i> Password</label>
+          <input type="password" id="reg-password" placeholder="Min. 6 characters" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <span>Create Account</span>
+          <i data-lucide="sparkles"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main App Layout (Hidden by default, shown when logged in) -->
+  <div id="app-layout" class="app-layout">
+    <!-- Left Sidebar (Navigation) -->
+    <aside class="sidebar-left">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i data-lucide="wind" class="logo-icon"></i>
+          <span>Aether</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active" data-view="home" onclick="navigateTo('home')">
+          <i data-lucide="home"></i>
+          <span>Home Feed</span>
+        </a>
+        <a href="#" class="nav-item" data-view="explore" onclick="navigateTo('explore')">
+          <i data-lucide="compass"></i>
+          <span>Explore</span>
+        </a>
+        <a href="#" class="nav-item" id="nav-my-profile" data-view="profile" onclick="navigateToProfile(null)">
+          <i data-lucide="user"></i>
+          <span>My Profile</span>
+        </a>
+        <button class="btn btn-primary nav-action-btn" onclick="openCreatePostModal()">
+          <i data-lucide="plus-circle"></i>
+          <span>Create Post</span>
+        </button>
+      </nav>
+
+      <!-- User Profile Card in Sidebar -->
+      <div class="sidebar-profile-card" id="sidebar-profile">
+        <img src="" alt="Avatar" class="avatar-small" id="sidebar-avatar">
+        <div class="profile-info">
+          <span class="display-name" id="sidebar-displayname">User Name</span>
+          <span class="username" id="sidebar-username">@username</span>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()" title="Log out">
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Stream -->
+    <main class="main-content">
+      <header class="content-header">
+        <h2 id="view-title">Home Feed</h2>
+        <div class="feed-tabs" id="feed-filter-tabs">
+          <button class="feed-tab active" id="feed-tab-all" onclick="changeFeedFilter('explore')">Explore</button>
+          <button class="feed-tab" id="feed-tab-following" onclick="changeFeedFilter('feed')">Following</button>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <!-- Feed View -->
+        <section id="view-home" class="app-view active">
+          <!-- Quick Post Box -->
+          <div class="quick-post-card">
+            <div class="quick-post-row">
+              <img src="" alt="Avatar" class="avatar-small my-avatar-img">
+              <textarea id="quick-post-content" placeholder="Share your thoughts with Aether..." rows="3"></textarea>
+            </div>
+            
+            <div id="quick-post-preview-container" class="image-preview-container hidden">
+              <img id="quick-post-preview" src="" alt="Post Preview">
+              <button class="btn-remove-preview" onclick="clearQuickPostImage()"><i data-lucide="x"></i></button>
+            </div>
+
+            <div class="quick-post-actions">
+              <label class="btn btn-secondary btn-icon-only" title="Attach Image">
+                <i data-lucide="image"></i>
+                <input type="file" id="quick-post-image-file" accept="image/*" style="display: none;" onchange="handleImageSelect(event, 'quick')">
+              </label>
+              <button class="btn btn-primary" onclick="submitQuickPost()">
+                <span>Post</span>
+                <i data-lucide="send"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Feed Posts Stream -->
+          <div id="posts-container" class="posts-container">
+            <!-- Dynamic Posts go here -->
+          </div>
+        </section>
+
+        <!-- Profile View -->
+        <section id="view-profile" class="app-view">
+          <div class="profile-header-card">
+            <div class="profile-banner-wrapper">
+              <img src="" alt="Banner" class="profile-banner" id="profile-banner-img">
+            </div>
+            <div class="profile-avatar-row">
+              <img src="" alt="Avatar" class="avatar-large" id="profile-avatar-img">
+              <div class="profile-header-actions">
+                <!-- Shown for self profile -->
+                <button class="btn btn-secondary" id="btn-edit-profile" onclick="openEditProfileModal()">
+                  <i data-lucide="edit-3"></i>
+                  <span>Edit Profile</span>
+                </button>
+                <!-- Shown for other profiles -->
+                <button class="btn btn-primary" id="btn-follow-user" onclick="toggleFollowProfile()">
+                  <span>Follow</span>
+                </button>
+              </div>
+            </div>
+            <div class="profile-bio-details">
+              <h3 id="profile-display-name">Display Name</h3>
+              <p class="profile-username-sub" id="profile-username-lbl">@username</p>
+              <p class="profile-bio" id="profile-bio-text">No bio yet.</p>
+              <div class="profile-stats">
+                <div class="stat-item">
+                  <strong id="profile-following-count">0</strong>
+                  <span>Following</span>
+                </div>
+                <div class="stat-item">
+                  <strong id="profile-followers-count">0</strong>
+                  <span>Followers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User's Posts Header -->
+          <div class="section-title">
+            <i data-lucide="grid"></i>
+            <span>Posts</span>
+          </div>
+
+          <!-- Profile Posts Stream -->
+          <div id="profile-posts-container" class="posts-container">
+            <!-- Dynamic Posts by profile user -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Right Sidebar (Widgets) -->
+    <aside class="sidebar-right">
+      <!-- Search Bar -->
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Search Aether users..." oninput="handleSearch(this.value)">
+        <div id="search-results" class="search-results hidden">
+          <!-- Dynamic Search Results -->
+        </div>
+      </div>
+
+      <!-- Who to Follow -->
+      <div class="widget-card">
+        <h3>Who to Follow</h3>
+        <div class="widget-list" id="who-to-follow-container">
+          <!-- Dynamic users suggestion list -->
+        </div>
+      </div>
+
+      <!-- Platform Trends / Activity -->
+      <div class="widget-card">
+        <h3>Aether Activity</h3>
+        <div class="activity-stats">
+          <div class="activity-stat">
+            <span class="stat-lbl">Global Posts</span>
+            <span class="stat-val" id="stats-total-posts">0</span>
+          </div>
+          <div class="activity-stat">
+            <span class="stat-lbl">Registered Citizens</span>
+            <span class="stat-val" id="stats-total-users">0</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Dialog / Modals System -->
+  
+  <!-- Create Post Modal -->
+  <div class="modal-overlay" id="modal-create-post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create a Post</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-create-post')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="modal-post-content" placeholder="What's floating in your head?" rows="4"></textarea>
+        
+        <div id="modal-post-preview-container" class="image-preview-container hidden">
+          <img id="modal-post-preview" src="" alt="Post Preview">
+          <button class="btn-remove-preview" onclick="clearModalPostImage()"><i data-lucide="x"></i></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <label class="btn btn-secondary" title="Add Photo">
+          <i data-lucide="image"></i>
+          <span>Photo</span>
+          <input type="file" id="modal-post-image-file" accept="image/*" style="display: none;" onchange="handleImageSelect(event, 'modal')">
+        </label>
+        <button class="btn btn-primary" onclick="submitModalPost()">
+          <span>Share Post</span>
+          <i data-lucide="send"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay" id="modal-edit-profile">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Profile</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-edit-profile')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="edit-display-name">Display Name</label>
+          <input type="text" id="edit-display-name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="edit-bio">Bio</label>
+          <textarea id="edit-bio" placeholder="Describe yourself..." rows="3"></textarea>
+        </div>
+        
+        <!-- Avatar selection/upload -->
+        <div class="form-group">
+          <label>Profile Picture</label>
+          <div class="avatar-edit-row">
+            <img src="" alt="Current Avatar" class="avatar-medium" id="edit-avatar-preview">
+            <div class="avatar-edit-options">
+              <label class="btn btn-secondary">
+                <i data-lucide="upload"></i> Upload
+                <input type="file" id="edit-avatar-file" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+              </label>
+              <button class="btn btn-icon-only btn-secondary" onclick="randomizeAvatar()" title="Randomize Preset">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner selection/upload -->
+        <div class="form-group">
+          <label>Profile Banner</label>
+          <div class="banner-edit-row">
+            <img src="" alt="Current Banner" class="banner-edit-preview" id="edit-banner-preview">
+            <div class="banner-edit-options">
+              <label class="btn btn-secondary">
+                <i data-lucide="upload"></i> Upload
+                <input type="file" id="edit-banner-file" accept="image/*" style="display: none;" onchange="handleBannerUpload(event)">
+              </label>
+              <button class="btn btn-icon-only btn-secondary" onclick="randomizeBanner()" title="Randomize Preset">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('modal-edit-profile')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitEditProfile()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Comments Modal -->
+  <div class="modal-overlay" id="modal-comments">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>Post details</h2>
+        <button class="modal-close-btn" onclick="closeModal('modal-comments')"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body modal-scrollable">
+        <!-- Main Post Render -->
+        <div id="comment-view-post-container"></div>
+        
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h3>Comments</h3>
+          <div id="comments-list" class="comments-list">
+            <!-- Dynamic comments list -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer sticky-footer">
+        <img src="" alt="Avatar" class="avatar-small my-avatar-img">
+        <input type="text" id="new-comment-input" placeholder="Write a comment..." onkeydown="handleCommentSubmitKey(event)">
+        <button class="btn btn-primary btn-icon-only" onclick="submitComment()">
+          <i data-lucide="send"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Script Dependencies -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
