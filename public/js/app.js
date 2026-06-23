@@ -86,7 +86,7 @@ async function handleRegister(e) {
   try {
     const user = await api.register(usernameVal, passwordVal, displayNameVal);
     currentUser = user;
-    showToast(`Account created! Welcome to Aether, ${user.displayName}!`, 'success');
+    showToast(`Account successfully created! Welcome, ${user.displayName}!`, 'success');
     bootApp();
   } catch (err) {
     showToast(err.message, 'error');
@@ -174,7 +174,7 @@ function navigateTo(viewName) {
     loadFeed();
   } else if (viewName === 'explore') {
     document.getElementById('view-home').classList.add('active');
-    titleEl.textContent = 'Explore Space';
+    titleEl.textContent = 'Explore';
     filterTabs.classList.add('hidden');
     // Set tab to active and load explore feed
     feedFilter = 'explore';
@@ -199,9 +199,9 @@ async function navigateToProfile(username) {
   const targetUsername = username || currentUser.username;
   if (targetUsername === currentUser.username) {
     document.getElementById('nav-my-profile').classList.add('active');
-    document.getElementById('view-title').textContent = 'My Atmosphere';
+    document.getElementById('view-title').textContent = 'My Profile';
   } else {
-    document.getElementById('view-title').textContent = `${targetUsername}'s Orbit`;
+    document.getElementById('view-title').textContent = `${targetUsername}'s Profile`;
   }
   
   document.getElementById('feed-filter-tabs').classList.add('hidden');
@@ -215,7 +215,7 @@ async function navigateToProfile(username) {
     document.getElementById('profile-banner-img').src = data.user.banner;
     document.getElementById('profile-display-name').textContent = data.user.displayName;
     document.getElementById('profile-username-lbl').textContent = `@${data.user.username}`;
-    document.getElementById('profile-bio-text').textContent = data.user.bio || 'No bio yet. Floating in the digital space.';
+    document.getElementById('profile-bio-text').textContent = data.user.bio || 'No bio provided yet.';
     document.getElementById('profile-followers-count').textContent = data.user.followersCount;
     document.getElementById('profile-following-count').textContent = data.user.followingCount;
 
@@ -275,7 +275,7 @@ async function loadFeed() {
       <div class="logo-icon animate-spin" style="margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; height: 36px; width: 36px;">
         <i data-lucide="loader"></i>
       </div>
-      <span>Aligning stars...</span>
+      <span>Loading feed...</span>
     </div>
   `;
   lucide.createIcons();
@@ -287,7 +287,7 @@ async function loadFeed() {
     container.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--text-muted);">
         <i data-lucide="alert-circle" style="width:36px; height:36px; margin-bottom:12px; color: var(--color-like);"></i>
-        <p>Failed to align space vectors: ${err.message}</p>
+        <p>Failed to load feed: ${err.message}</p>
       </div>
     `;
     lucide.createIcons();
@@ -304,7 +304,7 @@ function renderPosts(posts, containerSelector) {
       <div class="post-card" style="text-align: center; padding: 48px 24px; color: var(--text-muted);">
         <i data-lucide="sparkles" style="width: 32px; height: 32px; color: var(--color-primary); margin-bottom: 12px; opacity: 0.5;"></i>
         <p style="font-weight:600; font-size:1.1rem; margin-bottom: 4px;">Nothing here yet</p>
-        <p style="font-size:0.9rem;">Be the first to share your thoughts in this empty space!</p>
+        <p style="font-size:0.9rem;">Be the first to share your thoughts on this platform!</p>
       </div>
     `;
     lucide.createIcons();
@@ -395,7 +395,7 @@ async function handleLike(postId, btn) {
 
 // Handle deleting post
 async function handleDeletePost(postId) {
-  if (!confirm('Are you sure you want to delete this post from space?')) return;
+  if (!confirm('Are you sure you want to delete this post?')) return;
   
   try {
     await api.deletePost(postId);
@@ -468,7 +468,7 @@ async function submitQuickPost() {
 
   try {
     await api.createPost(content, quickPostImage);
-    showToast('Post floated successfully!');
+    showToast('Post published successfully!');
     contentEl.value = '';
     clearQuickPostImage();
     loadFeed();
@@ -490,7 +490,7 @@ async function submitModalPost() {
 
   try {
     await api.createPost(content, modalPostImage);
-    showToast('Post floated successfully!');
+    showToast('Post published successfully!');
     contentEl.value = '';
     clearModalPostImage();
     closeModal('modal-create-post');
@@ -525,7 +525,7 @@ async function openCommentsModal(postId) {
   const listEl = document.getElementById('comments-list');
   const postContainer = document.getElementById('comment-view-post-container');
   
-  listEl.innerHTML = '<p style="text-align:center; padding: 20px; color: var(--text-muted);">Syncing comments...</p>';
+  listEl.innerHTML = '<p style="text-align:center; padding: 20px; color: var(--text-muted);">Loading comments...</p>';
   postContainer.innerHTML = '';
   
   try {
@@ -569,7 +569,7 @@ function renderCommentsList(comments) {
   const listEl = document.getElementById('comments-list');
   
   if (comments.length === 0) {
-    listEl.innerHTML = '<p style="text-align:center; padding: 20px; color: var(--text-muted); font-size: 0.9rem;">No comments yet. Add your voice below!</p>';
+    listEl.innerHTML = '<p style="text-align:center; padding: 20px; color: var(--text-muted); font-size: 0.9rem;">No comments yet. Share your thoughts below!</p>';
     return;
   }
 
@@ -723,7 +723,7 @@ async function submitEditProfile() {
     });
 
     closeModal('modal-edit-profile');
-    showToast('Atmosphere profile updated!');
+    showToast('Profile updated successfully!');
 
     // If currently viewing self profile, refresh page
     if (activeProfileUser && activeProfileUser.id === currentUser.id) {
@@ -799,7 +799,7 @@ async function loadWhoToFollow() {
   try {
     const users = await api.getWhoToFollow();
     if (users.length === 0) {
-      container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No other wanderers to follow.</p>';
+      container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">No other users to follow.</p>';
       return;
     }
 
@@ -816,7 +816,7 @@ async function loadWhoToFollow() {
       </div>
     `).join('');
   } catch (err) {
-    container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Failed to find other orbits.</p>';
+    container.innerHTML = '<p style="color:var(--text-muted); font-size:0.85rem;">Failed to find other users.</p>';
   }
 }
 
@@ -876,10 +876,10 @@ function handleSearch(query) {
         };
         resultsEl.appendChild(item);
       } else {
-        resultsEl.innerHTML = '<div style="padding:12px; color:var(--text-muted); font-size:0.85rem;">No user matches this coordinates.</div>';
+        resultsEl.innerHTML = '<div style="padding:12px; color:var(--text-muted); font-size:0.85rem;">No user found matching this query.</div>';
       }
     } catch (err) {
-      resultsEl.innerHTML = '<div style="padding:12px; color:var(--text-muted); font-size:0.85rem;">Error seeking star systems.</div>';
+      resultsEl.innerHTML = '<div style="padding:12px; color:var(--text-muted); font-size:0.85rem;">Error searching for users.</div>';
     }
   }, 300);
 }

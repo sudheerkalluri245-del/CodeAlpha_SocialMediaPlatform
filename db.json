@@ -21,6 +21,50 @@
       "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Pardhu",
       "banner": "https://api.dicebear.com/7.x/identicon/svg?seed=Pardhubanner",
       "createdAt": "2026-06-12T05:55:09.491Z"
+    },
+    {
+      "id": "ef3cdc12-c3e5-41bd-8680-03761d7ff095",
+      "username": "pardha saradhi",
+      "passwordHash": "278acc41d2d9529f94c79b13ca92e99279837a295e8c4a22684d803e653b53f6",
+      "salt": "55c42850652c483506f4f3e744109e37",
+      "displayName": "pardhasaradhi@gmail.com",
+      "bio": "",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Pardha Saradhi",
+      "banner": "https://api.dicebear.com/7.x/identicon/svg?seed=Pardha Saradhibanner",
+      "createdAt": "2026-06-19T06:54:00.013Z"
+    },
+    {
+      "id": "29216688-b9ed-4770-9821-35906164e687",
+      "username": "kalluri siva naga sudheer",
+      "passwordHash": "d79d2ae52f77316332fd31e2ded38aa5684f147a58416773d6977e5f4f7f35e9",
+      "salt": "08c2775737602052c97146483ae66ab3",
+      "displayName": "SUDHEER KALLURI",
+      "bio": "",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=KALLURI SIVA NAGA SUDHEER",
+      "banner": "https://api.dicebear.com/7.x/identicon/svg?seed=KALLURI SIVA NAGA SUDHEERbanner",
+      "createdAt": "2026-06-19T06:55:08.083Z"
+    },
+    {
+      "id": "dbc62e6f-5238-4fc3-8482-259c96b49660",
+      "username": "sudheer",
+      "passwordHash": "fe4c9ac336aadcbcc5643931e0b7aa05f138754824e66f1d0b3475888581cd35",
+      "salt": "55cc2d7ff734561c684b1a61bb54a06c",
+      "displayName": "Sudheer",
+      "bio": "",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=sudheer",
+      "banner": "https://api.dicebear.com/7.x/identicon/svg?seed=sudheerbanner",
+      "createdAt": "2026-06-19T07:19:11.583Z"
+    },
+    {
+      "id": "f266ffa5-075b-4349-a7a1-5571ff294b6b",
+      "username": "nani",
+      "passwordHash": "be4945168d6d28c510c61a3f825b284d6a6e37dfede9a795140db9f8c7a5642a",
+      "salt": "718a29ed3412114d2871b9cd70f62d8e",
+      "displayName": "Nani",
+      "bio": "",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=nani",
+      "banner": "https://api.dicebear.com/7.x/identicon/svg?seed=nanibanner",
+      "createdAt": "2026-06-23T06:53:42.907Z"
     }
   ],
   "posts": [
@@ -39,13 +83,37 @@
       "createdAt": "2026-06-12T05:49:10.866Z"
     }
   ],
-  "comments": [],
-  "likes": [],
+  "comments": [
+    {
+      "id": "0f0fad24-ab26-448a-9d0b-6ae6da5926f0",
+      "postId": "f8db17ab-cb25-432d-83cc-d16c4f29f667",
+      "userId": "29216688-b9ed-4770-9821-35906164e687",
+      "content": "hi",
+      "createdAt": "2026-06-23T07:00:58.075Z"
+    }
+  ],
+  "likes": [
+    {
+      "userId": "29216688-b9ed-4770-9821-35906164e687",
+      "postId": "f6ed1a80-0ee0-407f-b11a-337326769d1d",
+      "createdAt": "2026-06-19T06:55:22.042Z"
+    }
+  ],
   "follows": [
     {
       "followerId": "09fde334-22aa-4e40-b577-bb8e7f8e69b7",
       "followingId": "975d2e81-9f51-4b5d-9fb9-efb986bea246",
       "createdAt": "2026-06-12T06:02:45.483Z"
+    },
+    {
+      "followerId": "29216688-b9ed-4770-9821-35906164e687",
+      "followingId": "ef3cdc12-c3e5-41bd-8680-03761d7ff095",
+      "createdAt": "2026-06-19T06:55:55.511Z"
+    },
+    {
+      "followerId": "29216688-b9ed-4770-9821-35906164e687",
+      "followingId": "09fde334-22aa-4e40-b577-bb8e7f8e69b7",
+      "createdAt": "2026-06-19T07:05:49.030Z"
     }
   ]
 }

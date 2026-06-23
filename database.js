@@ -75,7 +75,7 @@ class Database {
       salt,
       displayName: displayName || username,
       bio,
-      avatar: avatar || `https://api.dicebear.com/7.x/adventurer/svg?seed=${username}`,
+      avatar: avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${username}`,
       banner: banner || `https://api.dicebear.com/7.x/identicon/svg?seed=${username}banner`,
       createdAt: new Date().toISOString()
     };

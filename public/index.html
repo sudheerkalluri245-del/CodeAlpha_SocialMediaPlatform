@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aether - Social Space</title>
+  <title>Aether - Professional Network</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
           <i data-lucide="wind" class="icon-brand-glow"></i>
         </div>
         <h1>Aether</h1>
-        <p>Step into the social atmosphere</p>
+        <p>Connect and collaborate with professionals</p>
       </div>
 
       <div class="auth-tabs">
@@ -37,7 +37,7 @@
       <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
         <div class="form-group">
           <label for="login-username"><i data-lucide="user"></i> Username</label>
-          <input type="text" id="login-username" placeholder="e.g. wanderer" required>
+          <input type="text" id="login-username" placeholder="e.g. john_doe" required>
         </div>
         <div class="form-group">
           <label for="login-password"><i data-lucide="lock"></i> Password</label>
@@ -53,7 +53,7 @@
       <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
         <div class="form-group">
           <label for="reg-username"><i data-lucide="at-sign"></i> Username</label>
-          <input type="text" id="reg-username" placeholder="e.g. wanderer (min 3 chars)" required minlength="3">
+          <input type="text" id="reg-username" placeholder="e.g. john_doe (min 3 chars)" required minlength="3">
         </div>
         <div class="form-group">
           <label for="reg-displayname"><i data-lucide="user"></i> Display Name</label>
@@ -131,7 +131,7 @@
           <div class="quick-post-card">
             <div class="quick-post-row">
               <img src="" alt="Avatar" class="avatar-small my-avatar-img">
-              <textarea id="quick-post-content" placeholder="Share your thoughts with Aether..." rows="3"></textarea>
+              <textarea id="quick-post-content" placeholder="Share an update or professional insight..." rows="3"></textarea>
             </div>
             
             <div id="quick-post-preview-container" class="image-preview-container hidden">
@@ -213,7 +213,7 @@
       <!-- Search Bar -->
       <div class="search-box">
         <i data-lucide="search"></i>
-        <input type="text" placeholder="Search Aether users..." oninput="handleSearch(this.value)">
+        <input type="text" placeholder="Search users..." oninput="handleSearch(this.value)">
         <div id="search-results" class="search-results hidden">
           <!-- Dynamic Search Results -->
         </div>
@@ -229,14 +229,14 @@
 
       <!-- Platform Trends / Activity -->
       <div class="widget-card">
-        <h3>Aether Activity</h3>
+        <h3>Platform Activity</h3>
         <div class="activity-stats">
           <div class="activity-stat">
-            <span class="stat-lbl">Global Posts</span>
+            <span class="stat-lbl">Total Posts</span>
             <span class="stat-val" id="stats-total-posts">0</span>
           </div>
           <div class="activity-stat">
-            <span class="stat-lbl">Registered Citizens</span>
+            <span class="stat-lbl">Registered Members</span>
             <span class="stat-val" id="stats-total-users">0</span>
           </div>
         </div>
@@ -254,7 +254,7 @@
         <button class="modal-close-btn" onclick="closeModal('modal-create-post')"><i data-lucide="x"></i></button>
       </div>
       <div class="modal-body">
-        <textarea id="modal-post-content" placeholder="What's floating in your head?" rows="4"></textarea>
+        <textarea id="modal-post-content" placeholder="What would you like to share?" rows="4"></textarea>
         
         <div id="modal-post-preview-container" class="image-preview-container hidden">
           <img id="modal-post-preview" src="" alt="Post Preview">
@@ -268,7 +268,7 @@
           <input type="file" id="modal-post-image-file" accept="image/*" style="display: none;" onchange="handleImageSelect(event, 'modal')">
         </label>
         <button class="btn btn-primary" onclick="submitModalPost()">
-          <span>Share Post</span>
+          <span>Publish Post</span>
           <i data-lucide="send"></i>
         </button>
       </div>
