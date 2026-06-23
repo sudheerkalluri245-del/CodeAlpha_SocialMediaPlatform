@@ -1,138 +1,310 @@
-# CodeAlpha_SocialMediaPlatform
+# 🌐 CodeAlpha Social Media Platform
 
-This project implements a basic social media platform using React for the frontend and Node.js/Express with MongoDB for the backend.
+## Full Stack Development Internship Project
 
-## Features
+### Internship Organization
 
-- **User Authentication**: Users can register and log in.
-- **Posting**: Authenticated users can create posts with text and images.
-- **Post Interaction**: Users can like and comment on posts.
-- **Following**: Users can follow and unfollow other users.
-- **News Feed**: A personalized feed showing posts from followed users.
-- **Profile Page**: A page to view a user's profile and their posts.
+**CodeAlpha**
 
-## Tech Stack
+### Internship Domain
 
-### Frontend
-- [React](https://reactjs.org/) - UI library
-- [Redux Toolkit](https://redux-toolkit.js.org/) - State management
-- [Axios](https://axios-http.com/) - HTTP client
-- [Material-UI](https://mui.com/) - UI components
+**Full Stack Development**
 
-### Backend
-- [Node.js](https://nodejs.org/) - Runtime
-- [Express.js](https://expressjs.com/) - Web framework
-- [MongoDB](https://www.mongodb.com/) - Database
-- [JWT (jsonwebtoken)](https://www.npmjs.com/package/jsonwebtoken) - Authentication
-- [Bcrypt (bcryptjs)](https://www.npmjs.com/package/bcryptjs) - Password hashing
-- [Multer](https://www.npmjs.com/package/multer) - File uploads
+### Task
 
-## Project Structure
+**Task 2 – Social Media Platform**
 
+---
+
+# Project Description
+
+The **Social Media Platform** is a full-stack web application developed using **Node.js** and **Express.js**. The platform allows users to create personal profiles, share posts, interact through comments, like posts, and follow other users. It demonstrates the implementation of modern web development concepts including frontend design, backend development, database integration, user authentication, and RESTful APIs.
+
+The project was developed as part of the **CodeAlpha Full Stack Development Internship** to gain hands-on experience in building dynamic, interactive, and scalable web applications.
+
+---
+
+# Objectives
+
+The primary objectives of this project are:
+
+* Develop a complete social media web application.
+* Implement secure user authentication.
+* Create personalized user profiles.
+* Allow users to create, edit, and delete posts.
+* Enable commenting on posts.
+* Implement Like and Follow functionalities.
+* Store application data using a database.
+* Build RESTful APIs using Express.js.
+* Gain practical experience in Full Stack Development.
+
+---
+
+# Features Implemented
+
+## User Authentication
+
+* User Registration
+* User Login
+* User Logout
+* Secure Password Storage
+* Session Management
+
+## User Profiles
+
+* View Profile
+* Edit Profile
+* Profile Information
+* User Bio
+* Profile Picture Support
+
+## Posts
+
+* Create Posts
+* View Posts
+* Edit Posts
+* Delete Posts
+
+## Comments
+
+* Add Comments
+* View Comments
+* Delete Comments
+
+## Like System
+
+* Like Posts
+* Unlike Posts
+* Like Counter
+
+## Follow System
+
+* Follow Users
+* Unfollow Users
+* Followers List
+* Following List
+
+---
+
+# Database Integration
+
+The application uses **JSON Database (db.json)** to store application data.
+
+Database entities include:
+
+## Users
+
+* User ID
+* Username
+* Email
+* Password
+* Profile Information
+
+## Posts
+
+* Post ID
+* Content
+* Author
+* Created Date
+
+## Comments
+
+* Comment ID
+* Post ID
+* User ID
+* Comment Text
+
+## Followers
+
+* Follower ID
+* Following ID
+
+---
+
+# Technology Stack
+
+## Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+
+## Backend
+
+* Node.js
+* Express.js
+
+## Database
+
+* JSON Database (db.json)
+
+## Development Tools
+
+* Visual Studio Code
+* Git
+* GitHub
+* npm
+
+---
+
+# Software Requirements
+
+* Node.js (v18 or above)
+* npm (Node Package Manager)
+* Visual Studio Code
+* Git
+* Modern Web Browser
+
+---
+
+# Project Architecture
+
+```text
+CodeAlpha_SocialMediaPlatform
+│
+├── .vscode
+│
+├── node_modules
+│
+├── public
+│   ├── css
+│   │   └── style.css
+│   │
+│   ├── js
+│   │   ├── api.js
+│   │   └── app.js
+│   │
+│   └── index.html
+│
+├── database.js
+├── db.json
+├── server.js
+├── package.json
+├── package-lock.json
+└── README.md
 ```
-CodeAlpha_SocialMediaPlatform/
-├── public/                 # Static files (HTML, etc.)
-├── src/                    # React application
-│   ├── components/         # Reusable React components
-│   ├── pages/              # Page components
-│   ├── redux/              # Redux store configuration
-│   ├── services/           # API service layer
-│   ├── App.css             # Global styles
-│   ├── index.css           # Main CSS
-│   └── index.js            # Entry point
-├── uploads/                # Uploaded images
-├── server.js               # Express server entry point
-├── package.json            # Project dependencies
-└── README.md               # Project documentation
+
+---
+
+# Installation and Setup
+
+## Clone Repository
+
+```bash
+git clone https://github.com/yourusername/CodeAlpha_SocialMediaPlatform.git
 ```
 
-## Prerequisites
+## Navigate to Project Folder
 
-- [Node.js](https://nodejs.org/) (v14 or higher recommended)
-- [MongoDB](https://www.mongodb.com/) (running locally or a connection string)
-
-## Installation
-
-1. **Clone the repository** (if you haven't already):
-   ```bash
-   git clone <repository-url>
-   cd CodeAlpha_SocialMediaPlatform
-   ```
-
-2. **Install backend dependencies**:
-   ```bash
-   cd .. # Navigate to the root directory if needed
-   cd CodeAlpha_SocialMediaPlatform
-   npm install
-   ```
-
-3. **Install frontend dependencies**:
-   ```bash
-   cd client
-   npm install
-   ```
-
-## Configuration
-
-Create a `.env` file in the `CodeAlpha_SocialMediaPlatform` directory (server root) with the following variables:
-
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-
-- `MONGO_URI`: Your MongoDB connection string (e.g., `mongodb://localhost:27017/socialmedia`)
-- `JWT_SECRET`: A secret key for signing JWT tokens
-
-## Usage
-
-### Start the Backend Server
 ```bash
 cd CodeAlpha_SocialMediaPlatform
-npm start
 ```
-The server will start on `http://localhost:5000`.
 
-### Start the Frontend
+## Install Dependencies
+
 ```bash
-cd client
-npm start
+npm install
 ```
-The React app will start on `http://localhost:3000`.
 
-## Usage
+## Run the Server
 
-1. Navigate to the client directory: `cd client`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm start`
-The application will be available at `http://localhost:3000`.
-
-## Deployment
-
-### Backend
 ```bash
-cd CodeAlpha_SocialMediaPlatform
+node server.js
+```
+
+If your project includes a **start** script in `package.json`, you can also run:
+
+```bash
 npm start
 ```
 
-### Frontend
-```bash
-cd client
-npm run build
+## Open in Browser
+
+```text
+http://localhost:3000
 ```
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# Key Highlights
 
-## Acknowledgments
+* User Registration and Login
+* User Profile Management
+* Post Creation and Management
+* Comments on Posts
+* Like System
+* Follow/Unfollow Users
+* RESTful API Development
+* JSON Database Integration
+* Responsive User Interface
 
-- [React](https://reactjs.org/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
+---
 
-## Contact
+# Learning Outcomes
 
-Sudheer Kalluri - [GitHub](https://github.com/sudheerkalluri245-del)
+Through this project, the following skills were acquired:
+
+* Full Stack Web Development
+* Node.js Fundamentals
+* Express.js Framework
+* REST API Development
+* JavaScript Programming
+* CRUD Operations
+* Database Integration
+* User Authentication
+* Git & GitHub Version Control
+* Responsive Web Design
+
+---
+
+# System Workflow
+
+1. User opens the application.
+2. User registers or logs in.
+3. User updates their profile.
+4. User creates a new post.
+5. Other users can like and comment on the post.
+6. Users can follow or unfollow other users.
+7. All information is stored in the JSON database.
+8. The server processes requests and returns dynamic responses.
+
+---
+
+# Future Enhancements
+
+* Real-Time Chat
+* Image Upload Support
+* Video Sharing
+* Notifications
+* Search Functionality
+* Hashtags
+* Stories Feature
+* Dark Mode
+* Email Verification
+* MongoDB Integration
+* JWT Authentication
+* Cloud Deployment
+
+---
+
+# Conclusion
+
+The **Social Media Platform** demonstrates the development of a modern full-stack social networking application using **Node.js** and **Express.js**. The project integrates frontend technologies, backend logic, user authentication, RESTful APIs, and database management into a single functional application. It showcases practical knowledge of full-stack development and serves as an excellent portfolio project.
+
+---
+
+# Author
+
+**Kalluri Siva Naga Sudheer**
+
+**B.Tech – Computer Science and Engineering**
+
+**Vignan's Foundation for Science, Technology and Research (Deemed to be University)**
+
+---
+
+# Internship Submission
+
+**CodeAlpha Full Stack Development Internship**
+
+**Task 2 – Social Media Platform**
