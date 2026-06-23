@@ -14,7 +14,7 @@
 
 **Task 2 – Social Media Platform**
 
----
+
 
 # Project Description
 
@@ -22,7 +22,7 @@ The **Social Media Platform** is a full-stack web application developed using **
 
 The project was developed as part of the **CodeAlpha Full Stack Development Internship** to gain hands-on experience in building dynamic, interactive, and scalable web applications.
 
----
+
 
 # Objectives
 
@@ -38,7 +38,7 @@ The primary objectives of this project are:
 * Build RESTful APIs using Express.js.
 * Gain practical experience in Full Stack Development.
 
----
+
 
 # Features Implemented
 
@@ -84,7 +84,6 @@ The primary objectives of this project are:
 * Followers List
 * Following List
 
----
 
 # Database Integration
 
@@ -119,7 +118,7 @@ Database entities include:
 * Follower ID
 * Following ID
 
----
+
 
 # Technology Stack
 
@@ -145,7 +144,7 @@ Database entities include:
 * GitHub
 * npm
 
----
+
 
 # Software Requirements
 
@@ -155,7 +154,6 @@ Database entities include:
 * Git
 * Modern Web Browser
 
----
 
 # Project Architecture
 
@@ -184,7 +182,7 @@ CodeAlpha_SocialMediaPlatform
 └── README.md
 ```
 
----
+
 
 # Installation and Setup
 
@@ -224,7 +222,7 @@ npm start
 http://localhost:3000
 ```
 
----
+
 
 # Key Highlights
 
@@ -238,7 +236,7 @@ http://localhost:3000
 * JSON Database Integration
 * Responsive User Interface
 
----
+
 
 # Learning Outcomes
 
@@ -255,7 +253,7 @@ Through this project, the following skills were acquired:
 * Git & GitHub Version Control
 * Responsive Web Design
 
----
+
 
 # System Workflow
 
@@ -268,7 +266,7 @@ Through this project, the following skills were acquired:
 7. All information is stored in the JSON database.
 8. The server processes requests and returns dynamic responses.
 
----
+
 
 # Future Enhancements
 
@@ -285,13 +283,13 @@ Through this project, the following skills were acquired:
 * JWT Authentication
 * Cloud Deployment
 
----
+
 
 # Conclusion
 
 The **Social Media Platform** demonstrates the development of a modern full-stack social networking application using **Node.js** and **Express.js**. The project integrates frontend technologies, backend logic, user authentication, RESTful APIs, and database management into a single functional application. It showcases practical knowledge of full-stack development and serves as an excellent portfolio project.
 
----
+
 
 # Author
 
@@ -301,7 +299,7 @@ The **Social Media Platform** demonstrates the development of a modern full-stac
 
 **Vignan's Foundation for Science, Technology and Research (Deemed to be University)**
 
----
+
 
 # Internship Submission
 
