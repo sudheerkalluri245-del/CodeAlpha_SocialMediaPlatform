@@ -222,6 +222,41 @@ npm start
 http://localhost:3000
 ```
 
+# Screenshots
+
+## Home Feed
+
+![Home Feed](screenshots/HomeFeed.png)
+
+---
+
+## Sign Up Page
+
+![Sign Up Page](screenshots/SignUp.png)
+
+---
+
+## Sign In Page
+
+![Sign In Page](screenshots/SignIn.png)
+
+---
+
+## User Profile
+
+![User Profile](screenshots/Profile.png)
+
+---
+
+## Explore Page
+
+![Explore Page](screenshots/Explore.png)
+
+---
+
+## Create Post
+
+![Create Post](screenshots/Create%20Post.png)
 
 
 # Key Highlights
@@ -305,4 +340,4 @@ The **Social Media Platform** demonstrates the development of a modern full-stac
 
 **CodeAlpha Full Stack Development Internship**
 
-**Task 2 – Social Media Platform**
+**Task 2 – Social Media Platform**S
