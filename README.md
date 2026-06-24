@@ -349,4 +349,4 @@ The **Social Media Platform** demonstrates the development of a modern full-stac
 
 **CodeAlpha Full Stack Development Internship**
 
-**Task 2 – Social Media Platform**S
+**Task 2 – Social Media Platform**
